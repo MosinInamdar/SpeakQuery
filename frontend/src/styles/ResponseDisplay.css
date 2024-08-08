@@ -1,0 +1,45 @@
+/* Initially hide the response container */
+.response-container {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  margin-top: 0;
+  padding: 0;
+  transition: all 0.5s ease;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* When there is content in the response container, make it visible */
+.response-container:empty {
+  display: none;
+}
+
+.response-container:not(:empty) {
+  opacity: 1;
+  max-height: none; /* Arbitrary large value to allow expansion */
+  margin-top: 15px;
+  padding: 15px;
+}
+
+.response-container p {
+  font-size: 1.2em;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.response-container a {
+  display: inline-block;
+  font-size: 1.2em;
+  color: #007bff;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.response-container a:hover {
+  color: #0056b3;
+  border-bottom: 2px solid #0056b3;
+}

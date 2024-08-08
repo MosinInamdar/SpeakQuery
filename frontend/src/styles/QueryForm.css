@@ -1,0 +1,116 @@
+.query-form-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  padding: 20px;
+  border-radius: 30px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s ease;
+}
+
+.chatbot-header {
+  display: flex;
+  justify-content: center;
+}
+
+.query-form-container.top {
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+}
+
+.button-group {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+input[type="text"] {
+  flex-grow: 1;
+  padding: 15px 20px;
+  border: 1px solid #ddd;
+  border-radius: 30px; /* Fully rounded text box */
+  transition: border-color 0.3s ease;
+  font-size: 16px;
+  box-sizing: border-box;
+  border-right: none; /* Remove the right border */
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+button {
+  padding: 15px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 30px; /* Fully rounded button */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-left: 10px; /* Space between input and button */
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+button i {
+  font-size: 18px;
+}
+
+button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+button:focus {
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  .query-form-container {
+    width: 90%;
+  }
+
+  .query-form-container.top {
+    width: 80%;
+  }
+}
+
+.not-published-message {
+  margin-top: 10px;
+  font-size: 1em;
+  color: #ff0000;
+  font-weight: bold;
+}
+
+.publish-success-message {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #dff0d8;
+  border-radius: 10px;
+  color: #3c763d;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.publish-success-message a {
+  color: #3c763d;
+  text-decoration: underline;
+}
+
+.publish-success-message a:hover {
+  color: #2b542c;
+}
