@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const storeSchema = new mongoose.Schema(
   {
     query: {
-      type: String,
+      type: [String],
       required: true,
     },
     link: {

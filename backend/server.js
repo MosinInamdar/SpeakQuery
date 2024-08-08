@@ -43,22 +43,23 @@ app.post("/api/query", async (req, res) => {
 
   try {
     // Extract keywords from the query
-    // const queryKeywords = extractKeywords(query);
-    const queryString = query.toLowerCase();
+    const queryKeywords = extractKeywords(query.toLowerCase());
 
-    const matchQuery = await Store.findOne({ query: queryString });
+    const matchQuery = await Store.findOne({ query: { $in: queryKeywords } });
 
     if (matchQuery) {
       const prompt = query;
       const result = await model.generateContent(prompt);
-      const responseText = result.response.text();
+      const responseText = await result.response.text();
       res.json({ response: responseText, link: matchQuery.link });
     } else {
       // Generate new content if no similar response is found
       const prompt = query;
       const result = await model.generateContent(prompt);
-      const responseText = result.response.text();
+      const responseText = await result.response.text();
       res.json({ response: responseText, link: null });
+
+      // Do not save the new query here, only return the response
     }
   } catch (error) {
     console.error(
@@ -95,9 +96,10 @@ app.post("/api/publish", async (req, res) => {
     });
 
     const articleUrl = result.data.url;
+    const keywords = extractKeywords(query.toLowerCase());
 
     // Store the query and link in the Store Mongodb
-    const store = new Store({ query: query.toLowerCase(), link: articleUrl });
+    const store = new Store({ query: keywords, link: articleUrl });
     await store.save();
 
     res.json({ message: "Published successfully", link: articleUrl });
