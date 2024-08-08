@@ -10,17 +10,14 @@ export const handleQuery = async (req, res) => {
 
   try {
     const queryKeywords = extractKeywords(query.toLowerCase());
+    const prompt = query;
+    const result = await model.generateContent(prompt);
+    const responseText = await result.response.text();
     const matchQuery = await Store.findOne({ query: { $all: queryKeywords } });
 
     if (matchQuery) {
-      const prompt = query;
-      const result = await model.generateContent(prompt);
-      const responseText = await result.response.text();
       res.json({ response: responseText, link: matchQuery.link });
     } else {
-      const prompt = query;
-      const result = await model.generateContent(prompt);
-      const responseText = await result.response.text();
       res.json({ response: responseText, link: null });
     }
   } catch (error) {
