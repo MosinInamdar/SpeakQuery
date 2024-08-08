@@ -10,5 +10,8 @@ app.use(express.json());
 
 app.use("/api", queryRoutes);
 app.use("/api", publishRoutes);
+app.use("/", (req, res) => {
+  res.send("Welcome to the AI-powered Assistant");
+});
 
 export default app;
