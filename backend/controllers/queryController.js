@@ -16,8 +16,8 @@ export const handleQuery = async (req, res) => {
     const result = await model.generateContent(prompt);
     const responseText = result.response.text();
     const matchQuery = await Store.findOne(
-      { query: { $all: queryKeywords } }, // Optimized with projection and lean
-      { _id: 0, query: 1, link: 1 } // Return only necessary fields
+      { query: { $all: queryKeywords } },
+      { _id: 0, query: 1, link: 1 }
     ).lean();
 
     if (matchQuery) {
