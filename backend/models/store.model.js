@@ -13,7 +13,6 @@ const storeSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-storeSchema.index({ query: 1 });
 
 const Store = mongoose.model("Store", storeSchema);
 
