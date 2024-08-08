@@ -12,8 +12,10 @@ export const handleQuery = async (req, res) => {
     const queryKeywords = extractKeywords(query.toLowerCase());
     const prompt = query;
     const result = await model.generateContent(prompt);
-    const responseText = await result.response.text();
-    const matchQuery = await Store.findOne({ query: { $all: queryKeywords } });
+    const responseText = result.response.text();
+    const matchQuery = await Store.findOne({
+      query: { $all: queryKeywords },
+    }).lean();
 
     if (matchQuery) {
       res.json({ response: responseText, link: matchQuery.link });
