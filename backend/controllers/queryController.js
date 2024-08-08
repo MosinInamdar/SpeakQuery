@@ -10,7 +10,7 @@ export const handleQuery = async (req, res) => {
 
   try {
     const queryKeywords = extractKeywords(query.toLowerCase());
-    const matchQuery = await Store.findOne({ query: { $in: queryKeywords } });
+    const matchQuery = await Store.findOne({ query: { $all: queryKeywords } });
 
     if (matchQuery) {
       const prompt = query;
